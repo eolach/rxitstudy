@@ -10,6 +10,8 @@ import {throwError} from 'rxjs';  // Angular 6/RxJS 6
 })
 export class AppComponent implements OnInit {
 
+  authorized = true
+
   /**
    * An object representing the user for the login form
    */
