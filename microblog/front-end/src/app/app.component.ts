@@ -32,16 +32,20 @@ export class AppComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private _blogPostService: BlogPostService,
-    private _userService: UserService,
+    public _blogPostService: BlogPostService,
+    public _userService: UserService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getPosts();
     this.new_post = {};
+    this.user = {
+      username: '',
+      password: ''
+    }
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [this.user.username, Validators.required],
+      password: [this.user.password, Validators.required]
     });
   }
 
@@ -50,7 +54,7 @@ export class AppComponent implements OnInit {
 
 
   login() {
-    this._userService.login({ 'username': this.user.username, 'password': this.user.password });
+    this._userService.login({'username':this.f.username.value, 'password':this.f.password.value});
   }
 
   refreshToken() {

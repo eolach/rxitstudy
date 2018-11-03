@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -18,8 +18,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-
-
 import { AppComponent } from './app.component';
 import { BlogPostService } from './blog_post.service';
 import { UserService } from './user.service';
@@ -32,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule, 
     FormsModule, 
+    ReactiveFormsModule,
     HttpClientModule, 
     BrowserAnimationsModule,
     MatCardModule,
