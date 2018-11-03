@@ -1,97 +1,104 @@
 <mat-sidenav-container>
-	<mat-sidenav #sidenav role="navigation">
-		<mat-nav-list>
-			<a *ngIf="!authorized" mat-list-item routerLink="/login">
-				<mat-icon class="icon">input</mat-icon>
-				<span class="label">Login</span>
-			</a>
-			<a *ngIf="authorized" mat-list-item type="button">
-				<mat-icon class="icon">input</mat-icon>
-				<span class="label">LogOut</span>
-			</a>
-			<a mat-list-item routerLink="/">
-				<mat-icon class="icon">home</mat-icon>
-				<span class="label"> Home</span>
-			</a>
-			<a *ngIf="authorized" mat-list-item routerLink="/dashboard">
-				<mat-icon class="icon">dashboard</mat-icon>
-				<span class="label">Dashboard</span>
-			</a>
-		</mat-nav-list>
-	</mat-sidenav>
-	<mat-sidenav-content>
-		<mat-toolbar color="primary">
-			<div fxHide.gt-xs>
-				<button mat-icon-button (click)="sidenav.toggle()">
-					<mat-icon>menu</mat-icon>
-				</button>
-			</div>
-			<div>
-				<a>PrescribeIT study</a>
-			</div>
-			<div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-				<ul fxLayout fxLayoutGap="20px" class="navigation-items">
-					<li>
-						<a *ngIf="!authorized" >
-							<mat-icon class="icon">input</mat-icon>
-							<span class="label">Login</span>
-						</a>
-					</li>
-					<li>
-						<a routerLink="/">
-							<mat-icon class="icon">home</mat-icon>
-							<span class="label">Home</span>
-						</a>
-					</li>
-					<li>
-						<a *ngIf="authorized" routerLink="/prescribers">
-							<mat-icon class="icon">dashboard</mat-icon>
-							<span class="label">Prescribers</span>
-						</a>
-					</li>
-					<li>
-						<a *ngIf="authorized" routerLink="/dispensers">
-							<mat-icon class="icon">dashboard</mat-icon>
-							<span class="label">Dispensers</span>
-						</a>
-					</li>
-					<li>
-						<a *ngIf="authorized" >
-							<mat-icon class="icon">input</mat-icon>
-							<span class="label">LogOut</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</mat-toolbar>
-	</mat-sidenav-content>
+  <mat-sidenav #sidenav role="navigation">
+    <mat-nav-list>
+      <a *ngIf="!authorized" mat-list-item routerLink="/login">
+        <mat-icon class="icon">input</mat-icon>
+        <span class="label">Login</span>
+      </a>
+      <a *ngIf="authorized" mat-list-item type="button">
+        <mat-icon class="icon">input</mat-icon>
+        <span class="label">LogOut</span>
+      </a>
+      <a mat-list-item routerLink="/">
+        <mat-icon class="icon">home</mat-icon>
+        <span class="label"> Home</span>
+      </a>
+      <a *ngIf="authorized" mat-list-item routerLink="/dashboard">
+        <mat-icon class="icon">dashboard</mat-icon>
+        <span class="label">Dashboard</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <a>PrescribeIT study</a>
+      </div>
+      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+          <li>
+            <a *ngIf="!authorized">
+              <mat-icon class="icon">input</mat-icon>
+              <span class="label">Login</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/">
+              <mat-icon class="icon">home</mat-icon>
+              <span class="label">Home</span>
+            </a>
+          </li>
+          <li>
+            <a *ngIf="authorized" routerLink="/prescribers">
+              <mat-icon class="icon">dashboard</mat-icon>
+              <span class="label">Prescribers</span>
+            </a>
+          </li>
+          <li>
+            <a *ngIf="authorized" routerLink="/dispensers">
+              <mat-icon class="icon">dashboard</mat-icon>
+              <span class="label">Dispensers</span>
+            </a>
+          </li>
+          <li>
+            <a *ngIf="authorized">
+              <mat-icon class="icon">input</mat-icon>
+              <span class="label">LogOut</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 
-<h2>Log In</h2>
-<div class="row" *ngIf="!_userService.token">
-  <div class="col-sm-4">
-    <label>Username:</label><br />
-    <input type="text" name="login-username" [(ngModel)]="user.username">
-    <span *ngFor="let error of _userService.errors.username"><br />{{ error }}</span></div>
-  <div class="col-sm-4">
-    <label>Password:</label><br />
-    <input type="password" name="login-password" [(ngModel)]="user.password">
-    <span *ngFor="let error of _userService.errors.password"><br />{{ error }}</span>
-  </div>
-  <div class="col-sm-4">
-    <button (click)="login()" class="btn btn-primary">Log In</button>&nbsp;
-  </div>
-  <div class="col-sm-12">
-    <span *ngFor="let error of _userService.errors.non_field_errors">{{ error }}<br /></span>
-  </div>
-</div>
-<div class="row" *ngIf="_userService.token">
-  <div class="col-sm-12">You are logged here in as {{ _userService.username }}.<br />
-    Token Expires: {{ _userService.token_expires }}<br />
-    <button (click)="refreshToken()" class="btn btn-primary">Refresh Token</button>&nbsp;
-    <button (click)="logout()" class="btn btn-primary">Log Out</button>&nbsp;
-  </div>
-</div>
+<mat-card class="card">
+  <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+    <h3>Log In</h3>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="row" *ngIf="!_userService.token">
+      <div class="col-sm-4">
+        <label>Username:</label><br />
+        <input type="text" name="login-username" [(ngModel)]="user.username">
+        <span *ngFor="let error of _userService.errors.username"><br />{{ error }}</span></div>
+      <div class="col-sm-4">
+        <label>Password:</label><br />
+        <input type="password" name="login-password" [(ngModel)]="user.password">
+        <span *ngFor="let error of _userService.errors.password"><br />{{ error }}</span>
+      </div>
+      <div class="col-sm-4">
+        <button (click)="login()" class="btn btn-primary">Log In</button>&nbsp;
+      </div>
+      <div class="col-sm-12">
+        <span *ngFor="let error of _userService.errors.non_field_errors">{{ error }}<br /></span>
+      </div>
+    </div>
+    <div class="row" *ngIf="_userService.token">
+      <div class="col-sm-12">You are logged here in as {{ _userService.username }}.<br />
+        Token Expires: {{ _userService.token_expires }}<br />
+        <button (click)="refreshToken()" class="btn btn-primary">Refresh Token</button>&nbsp;
+        <button (click)="logout()" class="btn btn-primary">Log Out</button>&nbsp;
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
 
 <h2 class="mt-3">Micro Blog Posts with a note to show intervention</h2>
 <div *ngFor="let post of posts">

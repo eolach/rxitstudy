@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {BlogPostService} from './blog_post.service';
-import {UserService} from './user.service';
-import {throwError} from 'rxjs';  // Angular 6/RxJS 6
+import { Component, OnInit } from '@angular/core';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { BlogPostService } from './blog_post.service';
+import { UserService } from './user.service';
+import { throwError } from 'rxjs';  // Angular 6/RxJS 6
 
 @Component({
   selector: 'app-root',
@@ -10,11 +13,10 @@ import {throwError} from 'rxjs';  // Angular 6/RxJS 6
 })
 export class AppComponent implements OnInit {
 
-  authorized = true
-
+  authorized = false;
   /**
-   * An object representing the user for the login form
-   */
+  * An object representing the user for the login form
+  */
   public user: any;
 
   /**
@@ -27,19 +29,28 @@ export class AppComponent implements OnInit {
    */
   public new_post: any;
 
-  constructor(private _blogPostService: BlogPostService, private _userService: UserService) { }
+  loginForm: FormGroup;
+
+  constructor(
+    private _blogPostService: BlogPostService,
+    private _userService: UserService,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.getPosts();
     this.new_post = {};
-    this.user = {
-      username: '',
-      password: ''
-    };
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+
   login() {
-    this._userService.login({'username': this.user.username, 'password': this.user.password});
+    this._userService.login({ 'username': this.user.username, 'password': this.user.password });
   }
 
   refreshToken() {
@@ -69,15 +80,15 @@ export class AppComponent implements OnInit {
 
   createPost() {
     this._blogPostService.create(this.new_post, this.user.token).subscribe(
-       data => {
-         // refresh the list
-         this.getPosts();
-         return true;
-       },
-       error => {
-         console.error('Error saving!');
-         return throwError(error);
-       }
+      data => {
+        // refresh the list
+        this.getPosts();
+        return true;
+      },
+      error => {
+        console.error('Error saving!');
+        return throwError(error);
+      }
     );
   }
 
