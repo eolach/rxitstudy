@@ -7,7 +7,7 @@ This is a demo app showing how to make API calls with Angular 6 and Django Rest 
 The following files are interesting:
 
 * angular_django_cors - The Django project and main settings file
-* microblog - An app within the project, containing the Django Rest Framework views and URL routing
+* rxit-app - An app within the project, containing the Django Rest Framework views and URL routing
 * static/ng-demo - The Angular app source code lives here
 * static/dist - The compiled Angular app is here
 
@@ -27,7 +27,7 @@ Open a terminal at the repo root, and run the following:
 ```bash
 pipenv install
 pipenv shell
-cd microblog/front-end
+cd rxit-app/front-end
 npm install
 ng build
 cd ../..

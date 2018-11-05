@@ -1,4 +1,4 @@
-"""angular_django_example URL Configuration
+"""rxitstudy URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -20,7 +20,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', include('microblog.urls')),
+    path(r'', include('rxit-app.urls')),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api-token-refresh/', refresh_jwt_token),
 ]
